@@ -110,6 +110,26 @@
         <p style="text-align: justify;">
            Con el parámetro -u para el Usuario y -p para el Password, después de probar distintos usuarios, que nos tiró el script lookupid.py con las contraseñas decodificadas de cisco, vemos que podemos tener permisos de usuario con Chase.
         </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/heist/9.JPG" class="img-fluid" alt="">
+        </p>
+        <p>
+          <strong> De esta manera encontramos la flag del User.  </strong> 
+        </p>
+
+        <p style="text-align: justify;">
+          <h1>• Escalada de Privilegios:</h1> 
+        </p>
+        <p style="text-align: justify;">
+           Realizamos un Get-process, pare revisar los procesos que está corriendo la máquina el único proceso que está corriendo es Firefox, así que entendemos que dentro de Firefox encontraremos algún tipo de información, por lo que tendremos que buscar la forma de volcar la memoria de ese proceso, para más tarde ver si encontramos algo de información interesante.
+        </p>
+        <p style="text-align: justify;">
+           Para hacer esto nos fijamos en el proceso que más uso del procesador está haciendo y con la herramienta procdump64.exe que sirve precisamente para el objetivo que tenemos, monitorizar  una aplicación de la  cpu y así poder  volcar su memoria en un archivo para luego estudiarlo por strings encontrado en este  <a href="https://docs.microsoft.com/en-us/sysinternals/downloads/procdump"> artículo </a>
+            El ejecutable nos lo descargamos desde <a href="https://github.com/phackt/pentest/tree/master/privesc/windows">GitHub,  </a> 
+            Aunque lo podemos encontrar en varios repositorios, Vamos a hacer uso de Procdump.exe
+
+        </p>
+
 
 
 
