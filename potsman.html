@@ -86,6 +86,48 @@
         <p style="text-align: justify;">
           <img src="assets/img/portfolio/postman/5.JPG" class="img-fluid" alt="">
         </p>
+        <p style="text-align: justify;">
+          Ahora debemos poner esta clave en la memoria del servidor redis y darle salida en un archivo .txt
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/postman/6.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">
+          Con esto logramos que key.txt sea nuestra clave pública. Ahora utilizaremos redis-cli para escribir esta cadena dentro de la memoria de redis. Y así volcar la memoria en el archivo authorized_keys y guardamos.
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/postman/7.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">
+          Con este paso el archivo de authorized keys debe tener incluida nuestra clave pública
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/postman/8.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">
+          Encontramos el user.txt, pero no tenemos los permisos necesarios para leer el archivo, aunque ya sabemos que hay un usuario llamado Matt
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/postman/9.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">
+          debemos encontrar una forma de autenticarnos con Matt, buscando en la maquina encontramos un archivo llamado id_rsa.bak, lo leemos y al tenemos un archivo encriptado, pues vamos a ver que puede darnos este archivo. 
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/postman/10.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">
+          Lo guardamos como id_rsa.hash y en este caso vamos a tratar de desencriptar este archivo con ssh2john y posteriormente le pasamos rockyou con John.
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/postman/11.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">
+          De esta manera tenemos un usuario y una contraseña, debemos buscar la forma de pasarnos de redis a Matt, con el comando su Matt desde redis ponemos la contraseña y nos pasamos al usuario Matt.
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/postman/12.JPG" class="img-fluid" alt="">
+        </p>
 
 
 
