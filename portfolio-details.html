@@ -126,7 +126,39 @@
         <p>
           <img src="assets/img/portfolio/sauna/sauna10.JPG" class="img-fluid" alt="">
         </p>
-
+        <p>
+          En la parte de usuarios nos encontramos con varios comandos que nos brindan información, entre ellos nos encontramos con uno que nos da como resultado al parecer un usuario y una password por defecto, pero nos encontramos con que el usuario que nos brinda no es ninguno de los que hemos enumerado hasta ahora, así que vamos a ver que podemos realizar con esta información.
+        </p>
+        <p>
+          <img src="assets/img/portfolio/sauna/sauna11.JPG" class="img-fluid" alt="">
+        </p>
+        <p>
+          Después de realizar varias pruebas nos damos cuenta que ese password es correspondiente al usuario que habíamos enumerado antes, pero iniciando sesión en evil-winrm con este usuario y realizando una enumeración no encontramos nada relevante que nos guíe por el camino hacia la segunda bandera, así que vamos a leer un poco en el <a href="https://forum.hackthebox.eu/discussion/2716/sauna/p7"> foro </a> a ver con que nos encontramos que nos ayude con el camino a esta flag 
+        </p>
+        <p>
+          Revisando el foro nos encontramos con un camino que nos puede ayudar a nuestro objetivo, así que hacemos uso de la herramienta secretdump de impacket.
+        </p>
+        <p>
+          <img src="assets/img/portfolio/sauna/sauna12.JPG" class="img-fluid" alt="">
+        </p>
+        <p>
+          De esta manera nos encontramos con los secretos de los usuarios y nos encontramos con las credenciales del usuario Administrator.
+        </p>
+        <p>
+          ya con estos hashes tenemos muchas formas de iniciar sesión, en este caso lo realizaremos con <a href="https://github.com/Hackplayers/evil-winrm"> evil-winrm </a>
+        </p>
+        <p>
+          <img src="assets/img/portfolio/sauna/sauna13.JPG" class="img-fluid" alt="">
+        </p>
+        <p>
+          <strong> De esta manera encontramos la flag del Root. </strong> 
+        </p>
+        <p>
+          Saludos <strong>Fr13ndS HTB</strong>
+        </p>
+        <p>
+          <img src="assets/img/portfolio/Saludo.png" class="img-fluid" alt="">
+        </p>
 
       </div>
     </div><!-- End Portfolio Details -->
