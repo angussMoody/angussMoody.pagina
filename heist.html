@@ -92,6 +92,25 @@
         <p style="text-align: justify;">
           <img src="assets/img/portfolio/heist/3.JPG" class="img-fluid" alt="">
         </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/heist/6.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/heist/7.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">
+          Utilizamos el script <a href="https://github.com/SecureAuthCorp/impacket/blob/master/examples/lookupsid.py"> Lookupsid.py </a> que nos permite realizar una búsqueda de los usuarios, teniendo ya un Usuario y una contraseña conocida, el cual nos da varios usuarios y ya tenemos unas contraseñas que debemos probar en estos usuarios, El script lo encontramos como parte de la colección de <a href="https://github.com/SecureAuthCorp/impacket"> impacket </a>
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/heist/8.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">
+          Paro esto vamos a hacer uso del Script de <a href="https://github.com/Hackplayers/evil-winrm"> evil-winrm </a> realizado en Ruby,  el cual nos permite tener acceso remoto a una máquina, que corre el servicio de winrm, y como hemos visto anteriormente el servicio del puerto 5985 está corriendo winman, que forma parte de este servicio 
+        </p>
+        <p style="text-align: justify;">
+           Con el parámetro -u para el Usuario y -p para el Password, después de probar distintos usuarios, que nos tiró el script lookupid.py con las contraseñas decodificadas de cisco, vemos que podemos tener permisos de usuario con Chase.
+        </p>
+
 
 
 
