@@ -129,14 +129,27 @@
             Aunque lo podemos encontrar en varios repositorios, Vamos a hacer uso de Procdump.exe
 
         </p>
-
-
-
-
-
-
-
-
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/heist/13.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">
+          Ejecutamos en procdump64.exe en el ID 6588, para obtener el fiefox.exe_191112_050043.dpm 
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/heist/15.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">
+          Realizamos un cat fiefox.exe_191112_050043.dpm para ver que nos arroja al archivo y realizamos una búsqueda con palabras claves como user, username, login en este caso vemos una contraseña de administrador 
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/heist/16.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">
+          así que muy posiblemente se pueda escalar privilegios con este Passsword, probaremos en <a href="https://github.com/Hackplayers/evil-winrm"> evil-winrm </a> con el usuario administrador conseguido anteriormente y la contraseña encontrada.
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/heist/18.JPG" class="img-fluid" alt="">
+        </p>
         <p>
           <strong> De esta manera encontramos la flag del Root. </strong> 
         </p>
