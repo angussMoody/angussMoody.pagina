@@ -117,9 +117,11 @@
         <p style="text-align: justify;">
           Para la escalada estuvimos mucho tiempo, pensando que podíamos hacer, así que investigando un poco en foros y grupos obtuvimos una pista sobre BloodHound (El sabueso), esta herramienta nos permite hacer el descubrimiento del Directorio Activo, permitiéndonos ver de forma gráfica, usuarios, grupos y permisos, así que nos instalamos esta herramienta que viene con una Base de Datos llamada Neo4j, es una herramienta muy completa para la enumeración, así que nos instalamos esta herramienta y en el proceso nos encontramos con dos formas de graficar, vamos a ver las 2 formas en este writeup.                    
         </p>
+
         <p>
           <h3>Primera forma de graficar:</h3> 
         </p>
+
         <p style="text-align: justify;">
           Para esta primera forma vamos a clonar el repositorio de bloodhound.py desde la página de <a href="https://github.com/fox-it/BloodHound.py"> GitHub </a>  ingresamos al directorio BloodHound.py y ahí encontramos nuestro script, corremos el script con estas banderas  y nos dará unos archivos .json                             
         </p>
@@ -162,6 +164,58 @@
         <p style="text-align: justify;">
           <img src="assets/img/portfolio/forest/13.JPG" class="img-fluid" alt="">
         </p>
+        <p style="text-align: justify;">
+          y así podemos ver la información de, usuarios, grupos, entre otras cosas
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/forest/14.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">
+          vamos a realizar un ejemplo de cómo ver el gráfico para saber más o menos como funciona la herramienta, si por ejemplo buscamos el grupo Administrator@htb.local, damos clic derecho sobre este y luego damos sobre Shortest Paths to Here.
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/forest/15.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">
+          Nos mostrará la gráfica de cómo está conformado este grupo, los grupos relacionados, los usuarios que pertenecen a este grupo, entre otras cosas
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/forest/16.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">
+          Y así podemos ir mirando con cada grupo o usuario
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/forest/17.JPG" class="img-fluid" alt="">
+        </p>
+
+        <p>
+          <h3>Segunda forma de graficar:</h3> 
+        </p>
+
+        <p style="text-align: justify;">
+          En el proceso encontramos otra forma de graficar y para nosotros la más completa y es por medio del script <a href="https://github.com/BloodHoundAD/BloodHound/blob/master/Ingestors/SharpHound.ps1"> SharpHound.ps1 </a> nos descargamos este script y lo subimos por medio de la Shell que tememos con <a href="https://github.com/Hackplayers/evil-winrm"> evil-winrm </a> con el comando upload y la ruta donde tenemos nuestro script. 
+        </p>
+        <p style="text-align: justify;">
+          Una vez que subimos nuestro archivo, lo importamos en las sesiones de powershell para poder ejecutarlo y con                 -Collectionmethod  All nos dará un archivo comprimido con los .json 
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/forest/18.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">
+          Nos descargamos este archivo con download y borramos los archivos para no generar spoiler de la máquina, ahora el paso a seguir es poder subir este archivo a BloodHound.
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/forest/19.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">
+          Una vez estemos en bloodHond podemos hacer uso de pathfinding, donde debemos poner los datos del camino que deseamos realizar en este caso queremos ver cuál es el camino desde svc-alfresco hasta el grupo de administrators, así que en este punto tienes muchas cosas que probar y ver el maravilloso uso de esta herramienta.
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/forest/20.JPG" class="img-fluid" alt="">
+        </p>
+
+
 
 
 
