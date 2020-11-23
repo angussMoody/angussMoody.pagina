@@ -214,17 +214,24 @@
         <p style="text-align: justify;">
           <img src="assets/img/portfolio/forest/20.JPG" class="img-fluid" alt="">
         </p>
-
-
-
-
-
-
-
-
-
-
-
+        <p style="text-align: justify;">
+          vemos algo que nos llama la atención y es que en el grupo de Exchange Windows Permissions tenemos WriteDacl que quiere decir que nos permite modificar algunos atributos del Dominio, Investigando un poco nos encontramos con unos articulos que nos permiten realizar una escalada de privilegios como este <a href="https://chryzsh.github.io/exploiting-privexchange/"> Explotación de PrivExchange </a> para este writeup vamos a hacer uso de la herramienta <a href="https://github.com/fox-it/aclpwn.py/wiki/Quickstart"> aclpwn </a> así que vamos a <a href="https://github.com/fox-it/aclpwn.py"> Github </a> y nos clonamos la herramienta o la instalamos con pip install aclpwn, lo que vamos a realizar es un ataque <a href="https://stealthbits.com/blog/what-is-dcsync-an-introduction/"> DCSync. </a> Ya con la aplicación la corremos para dar privilegios al usuario que tenemos en este momento
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/forest/22.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">
+          ahora vamos a hacer uso de dos scripts de <a href="https://github.com/SecureAuthCorp/impacket"> impacket </a> para terminar la con la escalada de privilegios, el primero que vamos a utilizar es <a href="https://github.com/SecureAuthCorp/impacket/blob/master/examples/secretsdump.py"> secretsdump </a> para obtener los hashs de los usuarios y con esto obtenemos las credenciales de los usuarios entre ellas las del administrator.
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/forest/24.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">
+          Y el segundo va a ser el script <a href="https://github.com/SecureAuthCorp/impacket/blob/master/examples/wmiexec.py"> wmiexec </a> que nos permite una conexión con los hashs encontrados.
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/forest/25.JPG" class="img-fluid" alt="">
+        </p>
         <p>
           <strong> De esta manera encontramos la flag del Root. </strong> 
         </p>
