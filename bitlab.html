@@ -123,11 +123,93 @@
           nos damos cuenta que el código que pongamos en estos archivos corre así que lo próximo es subir nuestra reverse Shell para ver si nos podemos conectar por medio de netcat 
         </p>
         <p style="text-align: justify;">
-          <img src="assets/img/portfolio/bitlab/9.JPG" class="img-fluid" alt="">
+          <img src="assets/img/portfolio/bitlab/10.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">          
+          Subimos nuestra Shell, y ponemos nuestra máquina a la escucha, para este caso lo hacemos en el puerto 9999 
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/bitlab/11.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/bitlab/12.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">          
+          Y al correr nuestro código tenemos acceso, realizamos el procedimiento que hemos realizado anteriormente con Python, para tener una Shell más amigable.
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/bitlab/13.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">          
+          Vamos a nuestro usuario para capturar la primera bandera, pero vemos que no tenemos permisos para leer este archivo, además vemos un ejecutable que nos llama la atención, RemoteConnection.exe
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/bitlab/14.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">          
+          Hasta este punto, no sabíamos bien que debemos hacer, ya que no tenemos permisos necesarios, entonces ya que podemos correr código, tal vez podamos ingresar a la base de datos y sacar las credenciales necesarias para obtener permisos de usuario
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/bitlab/20.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">          
+          Y con este código encontramos unas credenciales con un password al parecer en base64 
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/bitlab/21.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">          
+          Al pasarlo a texto nos da una password que al parecer es de ssh, así que vamos a intentar conectarnos por medio de ssh con el usuario que ya conocemos, pero no tenemos suerte con este password 
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/bitlab/22.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">          
+          intentamos con el password en base64
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/bitlab/23.JPG" class="img-fluid" alt="">
+        </p>
+        <p>
+          <strong> Y de esta manera obtenemos nuestra primer flag. </strong> 
         </p>
 
-
-
+        <p style="text-align: justify;">
+          <h1>• Escalada de Privilegios:</h1> 
+        </p>
+        <p style="text-align: justify;">          
+          La escalada de privilegios no fue tan difícil como otras máquinas que hemos visto, ya que desde el principio de la máquina nos dieron un archivo para analizar, después de analizar el código un poco, leer un poco y pensar un poco, corrimos el RemoteConnerion.exe con la herramienta OllyDbg.
+        </p>
+        <p style="text-align: justify;">          
+          De entrada, vemos algo que nos llama la atención y es nuestro usuario
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/bitlab/24.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">          
+          Así que vamos a darle en Breakpoint y luego en Run to selection
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/bitlab/25.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">          
+          Nos arroja unos datos interesante que debemos pasar a leer
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/bitlab/27.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">          
+         y al parecer nos encontramos con las credenciales del usuario root
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/bitlab/26.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">          
+         ahora vamos a iniciar sesión por medio de ssh como hicimos con el usuario clave
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/bitlab/28.JPG" class="img-fluid" alt="">
+        </p>
         <p>
           <strong> De esta manera encontramos la flag del Root. </strong> 
         </p>
