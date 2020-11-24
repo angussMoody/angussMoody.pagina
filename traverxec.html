@@ -134,6 +134,24 @@
           Vemos que la última línea nos muestra <a href="http://lamiradadelreplicante.com/2015/03/29/ver-los-logs-del-sistema-en-linux-con-journalctl/#:~:text=Journalctl%20es%20ahora%20la%20herramienta,el%20polvo%20de%20la%20paja."> journalctl </a>  
           así que investigamos un poco sobre que es
         </p>
+        <p style="text-align: justify;">          
+          buscamos la forma de escalar privilegios y nos encontramos con <a href="https://gtfobins.github.io/gtfobins/journalctl/"> GTFOBins </a> que ya lo hemos visto antes en otras máquinas
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/traverxec/GTFOBins.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">          
+          Y acá es donde viene la parte trol de la máquina, como en otras máquinas con el comando sudo -l nos enseña una línea por donde podemos escalar privilegios, así para esta máquina; corremos la última línea que tiene el archivo server-stats.sh con la termina maximizada, pero no ocurre nada
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/traverxec/10.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">          
+          Solo cuando tenemos nuestra terminal minimizada es cuando nos da permisos para escribir y como vimos en GTFOBins con el comando ¡/bin/bash obtendremos una Shell y de esta manera ya somos usuarios root
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/traverxec/11.JPG" class="img-fluid" alt="">
+        </p>
 
 
       
