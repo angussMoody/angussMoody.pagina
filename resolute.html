@@ -58,8 +58,8 @@
             <h3>angussMoody</h3>
             <ul><br><br><br><br><br>
               <li><strong>Sistema</strong>: Windows</li>
-              <li><strong>Puntuación</strong>: 4.2</li>
-              <li><strong>Categoría</strong>: Fácil</li>
+              <li><strong>Puntuación</strong>: 4.7</li>
+              <li><strong>Categoría</strong>: Medio</li>
             </ul>
 
           </div>
@@ -75,81 +75,10 @@
         <p>
           <img src="assets/img/portfolio/sauna/sauna2.JPG" class="img-fluid" alt="">
         </p>
-        <p>
-          nos creamos nuestra lista de Usuario <br>
-        </p>
-        <p>
-          <img src="assets/img/portfolio/sauna/sauna4.JPG" class="img-fluid" alt="">
-        </p>
-        <p>
-          Agregamos nuestro dominio a nuestro archivo host <br>
-        </p>
-        <p>
-          <img src="assets/img/portfolio/sauna/sauna5.JPG" class="img-fluid" alt="">
-        </p>
-        <p>
-          ya con este diccionario vamos a realizar el ataque ASREPRoast <br>
-        </p>
-        <p>
-          <img src="assets/img/portfolio/sauna/sauna6.JPG" class="img-fluid" alt=""> <br>
-        </p>
-        <p>
-          este ataque nos devuelve un usuario y un hash en John the Ripper como le indicamos en el ataque, ahora debemos tratar de descifrar este hash.
-        </p>
-        <p>
-          <img src="assets/img/portfolio/sauna/sauna7.JPG" class="img-fluid" alt=""> <br>
-        </p>
-        <p>
-          Y de esta manera nos encontramos con la password de este usuario.
-        </p>
-        <p>
-          <img src="assets/img/portfolio/sauna/sauna8.JPG" class="img-fluid" alt=""> <br>
-        </p>
-        <p>
-          Proceso similar que realizamos en la máquina <a href="">Forest</a> <br>
-        </p>
-        <p>
-          En este punto, ya tenemos un User y un Password, así que vamos a probar con <a href="https://github.com/Hackplayers/evil-winrm"> evil-winrm </a> como en máquinas pasadas
-        </p>
-        <p>
-          <img src="assets/img/portfolio/sauna/sauna10.JPG" class="img-fluid" alt="">
-        </p>
-        <p>
-          <strong> de esta manera obtenemos nuestra primer flag </strong>
-        </p>
-        <p>
-          <strong> <h1>• Escalada de Privilegios:</h1> </strong>
-        </p>
-        <p>
-          Enumerando un poco la máquina nos encontramos con otro Usuario y vamos a hacer uso de una <a href="https://www.absolomb.com/2018-01-26-Windows-Privilege-Escalation-Guide/"> guía de enumeración  para la escala de Privilegios de Windows </a> que hemos visto anteriormente a ver con que nos encontramos 
-        </p>
-        <p>
-          <img src="assets/img/portfolio/sauna/sauna11.JPG" class="img-fluid" alt="">
-        </p>
-        <p>
-          En la parte de usuarios nos encontramos con varios comandos que nos brindan información, entre ellos nos encontramos con uno que nos da como resultado al parecer un usuario y una password por defecto, pero nos encontramos con que el usuario que nos brinda no es ninguno de los que hemos enumerado hasta ahora, así que vamos a ver que podemos realizar con esta información.
-        </p>
-        <p>
-          <img src="assets/img/portfolio/sauna/sauna12.JPG" class="img-fluid" alt="">
-        </p>
-        <p>
-          Después de realizar varias pruebas nos damos cuenta que ese password es correspondiente al usuario que habíamos enumerado antes, pero iniciando sesión en evil-winrm con este usuario y realizando una enumeración no encontramos nada relevante que nos guíe por el camino hacia la segunda bandera, así que vamos a leer un poco en el <a href="https://forum.hackthebox.eu/discussion/2716/sauna/p7"> foro </a> a ver con que nos encontramos que nos ayude con el camino a esta flag 
-        </p>
-        <p>
-          Revisando el foro nos encontramos con un camino que nos puede ayudar a nuestro objetivo, así que hacemos uso de la herramienta secretdump de impacket.
-        </p>
-        <p>
-          <img src="assets/img/portfolio/sauna/sauna13.JPG" class="img-fluid" alt="">
-        </p>
-        <p>
-          De esta manera nos encontramos con los secretos de los usuarios y nos encontramos con las credenciales del usuario Administrator.
-        </p>
-        <p>
-          ya con estos hashes tenemos muchas formas de iniciar sesión, en este caso lo realizaremos con <a href="https://github.com/Hackplayers/evil-winrm"> evil-winrm </a>
-        </p>
-        <p>
-          <img src="assets/img/portfolio/sauna/sauna15.JPG" class="img-fluid" alt="">
-        </p>
+
+
+
+
         <p>
           <strong> De esta manera encontramos la flag del Root. </strong> 
         </p>
