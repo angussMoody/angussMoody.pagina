@@ -78,11 +78,125 @@
           <img src="assets/img/portfolio/openadmin/2.png" class="img-fluid" alt="">
         </p>
         <p style="text-align: justify;">
-          realizamos una busqueda con estos datos y nos encontramos con este <a href="https://packetstormsecurity.com/files/155406/OpenNetAdmin-18.1.1-Remote-Code-Execution.html"> script </a>
+          realizamos una busqueda con estos datos y nos encontramos con este <a href="https://packetstormsecurity.com/files/155406/OpenNetAdmin-18.1.1-Remote-Code-Execution.html"> script </a> que nos permite una shell reversa con pocos privilegios
         </p>
         <p>
           <img src="assets/img/portfolio/openadmin/1.JPG" class="img-fluid" alt="">
         </p>
+        <p style="text-align: justify;">
+          con el comando ./open.sh http://10.10.10.171/ona/login.php tenemos nuestra shell sin privilegios, donde podemos sacar información, de los usuarios que tiene esta maquina y la información de la base de datos.
+        </p>
+        <p>
+          <img src="assets/img/portfolio/openadmin/4.JPG" class="img-fluid" alt="">
+        </p>
+        <p>
+          <img src="assets/img/portfolio/openadmin/3.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">
+          En este punto, tenemos 2 Usuarios y una Password, así que probamos y tenemos acceso con jimmy por ssh, pero aun no tenemos nuestra flag, seguimos enumerando y nos encontramos con   una página interna y nos da una pista de las credenciales de Joanna 
+        </p>
+        <p>
+          <img src="assets/img/portfolio/openadmin/6.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">
+          En este punto debemos buscar una forma de poder observar la llave que hemos encontrado en el archivo main.php así que hacemos uso del Script LinEnum.sh para ver si encontramos alguna forma de visualizar este archivo.
+        </p>
+        <p>
+          <img src="assets/img/portfolio/openadmin/LinEnum.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">
+          Revisando los datos que nos trae el script nos encontramos con dos puertos que están corriendo en el localhost, el primero 3306 sabemos que es de MySql, pero el segundo 52846 tenemos la duda de que trate, nos vamos a centrar en este, en este punto nos encontramos 2 formas de encontrar las credenciales y en este writeup vamos a ver las 2 formas.
+        </p>
+        <p>
+          <img src="assets/img/portfolio/openadmin/puertos.JPG" class="img-fluid" alt="">
+        </p>
+
+
+        <p>
+          <h3>Primera forma:</h3> 
+        </p>
+        <p style="text-align: justify;">
+          La primera forma que vamos a realizar es una técnica llamada <a href="https://culturacion.com/que-es-port-forwarding/"> port forwarding </a> lo que vamos a hacer es poder ver lo que tiene este puerto en nuestro localhost, para esto necesitamos un usuario y una pass valida, y con estos comandos podremos observar los archivos de internal en nuestra máquina
+        </p>
+        <p>
+          <img src="assets/img/portfolio/openadmin/12.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">
+          dentro de internal nos encontramos con 3 archivos, el index.php, logout.php y el main.php que ya lo habíamos visto y que es el que nos interesa.
+        </p>
+        <p>
+          <img src="assets/img/portfolio/openadmin/inter.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">
+          Realizando un cat a index.php nos encontramos que el usuario es Jimmy,  el hash de la password y nos dice que con las credenciales correctas nos direccionará al main.php
+        </p>
+        <p>
+          <img src="assets/img/portfolio/openadmin/hash.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">
+          Vamos a descifrar ese hash en <a href="https://md5decrypt.net/en/Sha512/#answer"> md5decrypt </a> que nos permited desencriptar  esta hash que nos dice que es un sha512.
+        </p>
+        <p>
+          <img src="assets/img/portfolio/openadmin/hash2.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">
+          Ya en este momento, tenemos un usuario y una pass, así que vamos a probar estas credenciales y de esta manera obtenemos nuestra llave.
+        </p>
+        <p>
+          <img src="assets/img/portfolio/openadmin/key.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">
+          Ya en este momento, tenemos un usuario y una pass, así que vamos a probar estas credenciales y de esta manera obtenemos nuestra llave.
+        </p>
+        <p>
+          <img src="assets/img/portfolio/openadmin/key.JPG" class="img-fluid" alt="">
+        </p>
+
+
+        <p>
+          <h3>Segunda forma:</h3> 
+        </p>
+        <p style="text-align: justify;">
+          La segunda manera es al ser una página interna vamos a hacer uso del comando cUrl en el localhost de la máquina en el archivo mail.php y así encontrar la llave de Joanna, es la forma más fácil, pero aprovechamos esta máquina para ver la técnica de port forwarding, ahora nos descargamos la llave en este caso la llamamos id_rsa
+        </p>
+        <p>
+          <img src="assets/img/portfolio/openadmin/7.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">
+          Una vez encontrada la llave, realizaremos el proceso como en otras <a href="index.html#portfolio"> máquinas anteriores </a> haciendo uso de ssh2john.py y john con el diccionario rockyou el cual nos da una password para el usuario Joanna.
+        </p>
+        <p>
+          <img src="assets/img/portfolio/openadmin/8.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">
+          Debemos darle permisos al archivo id_rsa chmod 600 e iniciar sesión por ssh con esta llave y la password que conseguimos.
+        </p>
+        <p>
+          <img src="assets/img/portfolio/openadmin/9.JPG" class="img-fluid" alt="">
+        </p>
+        <p>
+          <strong> Y de esta manera obtenemos nuestra primer flag    </strong> 
+        </p>
+
+
+        <p>
+          <h1>• Escalada de Privilegios:</h1> 
+        </p>
+        <p style="text-align: justify;">
+          Para la escalada de privilegios, como siempre que nos enfrentamos a una máquina Linux corremos el comando sudo -l para saber si tenemos acceso, en este caso nos dice que tenemos acceso a nano con este usuario.
+        </p>
+        <p>
+          <img src="assets/img/portfolio/openadmin/10.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">
+          Investigando un poco en binarios nos encontramos con <a href="https://gtfobins.github.io/"> GTFOBins </a> que ya lo habíamos visto en una máquina anterior, y encontramos que podemos generar un Shell de sistema.
+        </p>
+        <p>
+          <img src="assets/img/portfolio/openadmin/11.JPG" class="img-fluid" alt="">
+        </p>
+
+
+
 
 
 
