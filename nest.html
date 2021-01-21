@@ -58,7 +58,7 @@
             <h3>angussMoody</h3>
             <ul><br><br><br><br><br>
               <li><strong>Sistema</strong>: Windows</li>
-              <li><strong>Puntuación</strong>: 4.3</li>
+              <li><strong>Puntuación</strong>: 3.9</li>
               <li><strong>Categoría</strong>: Media</li>
             </ul>
 
@@ -74,43 +74,6 @@
         <p style="text-align: justify;">
           <img src="assets/img/portfolio/monteverde/1.JPG" class="img-fluid" alt="">
         </p>
-        <p style="text-align: justify;">
-          Vamos a hacer uso de la Herramienta rpcclient y corremos el comando con la opción -U “” porque no tenemos ningun usuario hasta este momento   y -N para la opción de No-pass, de esta manera ingresamos, utilizamos enumdomusers, para enumerar los usuarios y nos encontramos con 10 usuarios, así que vamos a ver la información de cada uno de ellos con queryuser, encontramos que en el tiempo de inicio se sesión hay 3 usuarios con fechas muy recientes mhope, SABatchjobs y ADD_987d7f2f57d2 y ya  con esta información vamos a ver que podemos encontrar por medio de smbclient.
-        </p>
-        <p style="text-align: justify;">
-          <img src="assets/img/portfolio/monteverde/2.JPG" class="img-fluid" alt="">
-        </p>
-        <p style="text-align: justify;">
-          Probando los 3 usuarios que vimos anteriormente, vemos que con SABatchjobs y de password el mismo nombre de usuario tenemos conexión a algunos directorios 
-        </p> 
-        <p style="text-align: justify;">
-          <img src="assets/img/portfolio/monteverde/3.JPG" class="img-fluid" alt="">
-        </p>
-        <p>
-          Vamos a enumerar y nos encontramos que dentro de users$ se encuentran 4 directorios de usuario.
-        </p>
-        <p style="text-align: justify;">
-          <img src="assets/img/portfolio/monteverde/4.JPG" class="img-fluid" alt="">
-        </p>
-        <p>
-          Dentro del directorio mhope nos encontramos con un archivo llamado Azure.xml, así que con get nos descargamos este archivo, para revisar de que trata.
-        </p>
-        <p style="text-align: justify;">
-          <img src="assets/img/portfolio/monteverde/5.JPG" class="img-fluid" alt="">
-        </p>
-        <p>
-          Leyendo el archivo nos encontramos con un password, vamos a probar una conexión con <a href="https://github.com/Hackplayers/evil-winrm"> evil-winrm </a> como hemos realizado en <a href="index.html#portfolio"> máquinas anteriores </a>
-        </p>
-        <p style="text-align: justify;">
-          <img src="assets/img/portfolio/monteverde/6.JPG" class="img-fluid" alt="">
-        </p>
-        <p style="text-align: justify;">
-          <img src="assets/img/portfolio/monteverde/7.JPG" class="img-fluid" alt="">
-        </p>
-        <p>
-          <strong> y así obtenemos nuestra primera flag .</strong> 
-        </p>
-
 
         <p style="text-align: justify;">
           <h1>• Escalada de Privilegios:</h1> 
@@ -120,24 +83,6 @@
         </p>
         <p style="text-align: justify;">
           <img src="assets/img/portfolio/monteverde/8.JPG" class="img-fluid" alt="">
-        </p>
-        <p>
-          Revisando un poco en google, y después de varias pruebas, nos encontramos con un <a href="https://github.com/Hackplayers/PsCabesha-tools/blob/master/Privesc/Azure-ADConnect.ps1"> script </a> que nos da las credenciales de administrador que necesitamos para la escalación de privilegios.  Modificamos un poco el script y lo subimos con la Shell que tenemos en este momento.
-        </p>
-        <p style="text-align: justify;">
-          <img src="assets/img/portfolio/monteverde/9.JPG" class="img-fluid" alt="">
-        </p>
-        <p>
-          Corremos nuestro script y obtenemos las credenciales de administrador. 
-        </p>
-        <p style="text-align: justify;">
-          <img src="assets/img/portfolio/monteverde/10.JPG" class="img-fluid" alt="">
-        </p>
-        <p>
-          Ahora solo queda probar una conexión en <a href="https://github.com/Hackplayers/evil-winrm"> evil-winrm </a>
-        </p>
-        <p style="text-align: justify;">
-          <img src="assets/img/portfolio/monteverde/11.JPG" class="img-fluid" alt="">
         </p>
         <p>
           <strong> De esta manera encontramos la flag del Root. </strong> 
