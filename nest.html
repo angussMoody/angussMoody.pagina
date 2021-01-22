@@ -166,7 +166,9 @@
         <p style="text-align: justify;">
           <img src="assets/img/portfolio/nest/16.JPG" class="img-fluid" alt="">
         </p>
-
+        <p>
+          <strong> de esta manera obtenemos nuestra primer flag. </strong> 
+        </p>
 
 
 
@@ -175,11 +177,141 @@
           <h1>• Escalada de Privilegios:</h1> 
         </p>
         <p>
-          Enumerando la máquina nos damos cuenta que está corriendo Azure, así que tratamos de encontrar una vulnerabilidad conocida para realizar el escalamiento de privilegios
+          Vamos a realizar una enumeración con las credenciales que tenemos en este momento y nos encontramos con un archivo llamado HQK_Config_Backup.xml
         </p>
         <p style="text-align: justify;">
-          <img src="assets/img/portfolio/monteverde/8.JPG" class="img-fluid" alt="">
+          <img src="assets/img/portfolio/nest/17.JPG" class="img-fluid" alt="">
         </p>
+        <p>
+          Que nos da un indicio del puerto 4386 que vimos en el escaneo.
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/nest/18.JPG" class="img-fluid" alt="">
+        </p>
+        <p>
+          También nos encontramos con binario llamado HqKLdap.exe y vemos un archivo llamado Debug Mode Password.txt, que al descargarlo no nos muestra nada y nos dice que el peso es 0 bytes, leyendo un poco en el foro nos dice que no está vacío como muestra en ese momento.
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/nest/19.JPG" class="img-fluid" alt="">
+        </p>
+        <p>
+          Así que damos un help, para saber que comandos podemos ejecutar y nos encontramos con el comando allinfo, vamos a ver que nos dice este archivo con este comando.
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/nest/20.JPG" class="img-fluid" alt="">
+        </p>
+        <p>
+          Nos dice que al parecer almacena una password y que en realidad el peso es de 15 bytes, vamos a descargarlo con estos parámetros.
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/nest/21.JPG" class="img-fluid" alt="">
+        </p>
+        <p>
+         Descargamos el archivo y le anexamos :password:$DATA y este nos da lo que al parecer es una password, ahora en este punto, tenemos un password y un puerto 
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/nest/23.JPG" class="img-fluid" alt="">
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/nest/24.JPG" class="img-fluid" alt="">
+        </p>
+        <p>
+         Vamos a ver qué servicio podemos encontrar en ese puerto, tratamos de conectarnos por medio de netcat y nos da una respuesta de HQK Reporting Service V1.2 pero no logramos conexión.
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/nest/25.JPG" class="img-fluid" alt="">
+        </p>
+        <p>
+         Pero cuando tratamos de conectarnos con telnet obtenemos respuesta y establecemos una conexión, ahora debemos enumerar, para saber si encontramos algo más de lo tenemos hasta el momento.
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/nest/26.JPG" class="img-fluid" alt="">
+        </p>
+        <p>
+         Dándole el comando help nos da los comandos y nos dice que con DEBUG y una password podremos tener una sesión, así que hacemos esto con el password encontrado anteriormente.
+        </p>
+        <p>
+         Y de esta manera ya tenemos una sesión, así que vamos a enumerar la máquina para ver que podemos encontrar.
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/nest/27.JPG" class="img-fluid" alt="">
+        </p>
+        <p>
+         Como vemos en la sesión nos encontramos en ALL QUERIES así que con SETDIR .. nos vamos al directorio de HQK pare ver que podemos encontrar.
+        </p>
+        <p>
+         Enumerando este directorio vemos que el archivo HQK_Config.xml nos da la password que ya habíamos encontrado y vemos un directorio llamado LDAP,  vamos a ver que nos encontramos en este directorio.
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/nest/29.JPG" class="img-fluid" alt="">
+        </p>
+        <p>
+        Nos encontramos con el binario que ya nos descargamos y con un archivo llamado Ldap.conf y vamos a ver de qué trata este archivo.emos respuesta y establecemos una conexión, ahora debemos enumerar, para saber si encontramos algo más de lo tenemos hasta el momento.
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/nest/30.JPG" class="img-fluid" alt="">
+        </p>
+        <p>
+        En este archivo al parecer se encuentra la password cifrada como vimos con el usuario C.Smith, pero en este caso la password de Administrator, vamos a copiarnos este archivo a ver si podemos descifrar esta password.
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/nest/31.JPG" class="img-fluid" alt="">
+        </p>
+        <p>
+        Nos pasamos este archivo y el binario a nuestra máquina de Windows para ver que podemos encontrar en ellos, al tratar de correrlos por CMD, no manda un error, así que investigando un poco nos encontramos con muy buena herramienta llamada <a href="https://github.com/0xd4d/dnSpy/releases"> DnSpy </a> vamos a depurar el binario para ver con que nos encontramos, montamos nuestro binario y le damos iniciar a ver si nos da algún error.
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/nest/32.JPG" class="img-fluid" alt="">
+        </p>
+        <p>
+        Al iniciar la depuración paso a paso nos encontramos con una línea que nos llama la atención donde menciona que debe existir un archivo llamado HqkDbImport.exe el cual no vimos en la enumeración de la máquina.
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/nest/33.JPG" class="img-fluid" alt="">
+        </p>
+        <p>
+        Nos creamos un archivo bajo este nombre e intentamos depurar el archivo de nuevo, ya con esto vemos que la depuración tiene los procesos completos.
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/nest/34.JPG" class="img-fluid" alt="">
+        </p>
+        <p>
+        Modificamos el código para agregar un Console.writeLine de la password y realizamos una depuración paso a paso del proceso.
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/nest/35.JPG" class="img-fluid" alt="">
+        </p>
+        <p>
+        Esto nos trae una ventana emergente donde vamos a copiar en el campo de argumentos el ldap.conf y en romper en le damos punto de entrada y aceptar.
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/nest/36.JPG" class="img-fluid" alt="">
+        </p>
+        <p>
+        Si vamos corriendo el binario paso a paso vemos que nos muestra las variables Username y Password, así que seguimos avanzando con el paso a paso para ver si en algún momento nos enseña la Password que necesitamos capturar.
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/nest/37.JPG" class="img-fluid" alt="">
+        </p>
+        <p>
+        Llegamos a un punto donde nos da el resultado de las variables, Domain, Username y Password. Ya en este punto contamos con el usuario Administrator y con la password. Así que vamos a intentar autenticarnos con esta credencial.
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/nest/38.JPG" class="img-fluid" alt="">
+        </p>
+        <p>
+        Otra forma de ver la password es, por medio de CMD, le damos en guardar todos, para que nos tome el cambio del Console.WriteLine y corremos el binario junto con el archivo ldap.conf y este nos dará la password del usuario Administrator
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/nest/39.JPG" class="img-fluid" alt="">
+        </p>
+        <p>
+        vamos a nuestra máquina atacante e iniciamos sesión con las credenciales de Administrator en el directorio C y nos dirigimos a la ruta del escritorio de nuestro usuario, donde encontramos el archivo root.txt
+        </p>
+        <p style="text-align: justify;">
+          <img src="assets/img/portfolio/nest/40.JPG" class="img-fluid" alt="">
+        </p>
+
         <p>
           <strong> De esta manera encontramos la flag del Root. </strong> 
         </p>
